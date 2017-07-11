@@ -3,13 +3,11 @@ const knex = require('knex')({
   connection: 'postgres://localhost:5432/ratemychild'
 })
 
-const query = knex
-  .insert({name: 'Sasha Degas', parent_name: 'Marcel Degas'})
-  .into('students')
+function addStudent(student) {
+  const query = knex
+    .insert(student)
+    .into('students')
+  return query
+}
 
-console.log(query.toString())
-
-query
-  .then(() => {
-    console.log('added!')
-  })
+module.exports = addStudent
