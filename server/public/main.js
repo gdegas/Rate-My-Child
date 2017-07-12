@@ -1,6 +1,6 @@
 
 function postStudent(student) {
-  fetch('/students', {
+  return fetch('/students', {
     method: 'POST',
     body: JSON.stringify(student),
     headers: {
@@ -8,8 +8,9 @@ function postStudent(student) {
     },
     credentials: 'same-origin'
   })
-  .then((response) => {
-    console.log(response)
+  .then(res => res.json())
+  .then(newStudent => {
+    console.log(newStudent)
   })
 }
 

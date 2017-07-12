@@ -10,17 +10,11 @@ const staticMiddleware = express.static(publicPath)
 app.use(staticMiddleware)
 app.use(bodyParser.json())
 
-// app.get('/students', (req, res) => {
-//   const query = knex.select().from('students')
-//   console.log(query.toString())
-//   query.then()
-// })
-
 app.post('/students', (req, res) => {
   const addStudent = req.body
   insertStudent(addStudent)
     .then(() => {
-      res.sendStatus(201)
+      res.Status(201).json(addStudent)
     })
 })
 
