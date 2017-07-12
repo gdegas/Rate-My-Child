@@ -1,10 +1,3 @@
-/* eslint-disable no-unused-vars */
-
-const studentSampleData = {
-  name: 'Gerard',
-  parent_name: 'olga',
-  parent_sms: 71717171
-}
 
 function postStudent(student) {
   fetch('/students', {
@@ -33,7 +26,4 @@ addStudent.addEventListener('submit', (event) => {
   const student = { name: studentName, parent_name: parentName, parent_sms: parentSms }
 
   postStudent(student)
-    .then(() => {
-      console.log('done')
-    })
 })
