@@ -15,7 +15,14 @@ function postStudent(student) {
 }
 
 function renderStudent(student) {
-
+  const $divStudent = document.createElement('div')
+  $divStudent.classList.add('card-panel', 'waves-effect', 'waves-light', 'teal', 'lighten-2',
+                            'z-depth-5', 'col', 's12')
+  const $studentName = document.createElement('h3')
+  $studentName.textContent = student.name
+  $studentName.classList.add('white-text', 'center-align')
+  $divStudent.appendChild($studentName)
+  return $divStudent
 }
 
 function listStudents() {
@@ -24,9 +31,13 @@ function listStudents() {
     .then(students => {
       console.log(students)
       students.map(renderStudent)
+        .forEach($divStudent => {
+          $studentList.appendChild($divStudent)
+        })
     })
 }
 
+const $studentList = document.querySelector('.list-students')
 const addStudent = document.getElementById('add-student')
 
 addStudent.addEventListener('submit', (event) => {
@@ -41,3 +52,5 @@ addStudent.addEventListener('submit', (event) => {
 
   postStudent(student)
 })
+
+listStudents()
