@@ -14,6 +14,19 @@ function postStudent(student) {
   })
 }
 
+function renderStudent(student) {
+
+}
+
+function listStudents() {
+  return fetch('/students')
+    .then(res => res.json())
+    .then(students => {
+      console.log(students)
+      students.map(renderStudent)
+    })
+}
+
 const addStudent = document.getElementById('add-student')
 
 addStudent.addEventListener('submit', (event) => {
