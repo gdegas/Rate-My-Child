@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Rate My Child</title>
+</head>
+<body>
+  <header class="center-align">
+    <h2 class="teal-text lighten-1">Rate My Child</h2>
+  </header>
+  <div class="valign-wrapper teal-text lighten-1">
+    <div class="container add-student">
+      <div class="row">
+        <form id="add-student" class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="large material-icons prefix">account_circle</i>
+              <input id="student-name" type="text" class="validate teal-text lighten-1" />
+              <label class="view1-label active" for="student-name">Student Name</label>
+            </div>
+            <div class="input-field col s12">
+              <i class="large material-icons prefix">account_circle</i>
+              <input id="parent-name" type="text" class="validate" />
+              <label class="view1-label active" for="parent-name">Parent Name</label>
+            </div>
+            <div class="input-field col s12">
+              <i class="large material-icons prefix">phone</i>
+              <input id="parent-sms" type="tel" class="validate" />
+              <label class="view1-label active" for="parent-sms">Parent Telephone</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light center-align" type="submit" name="action">
+            Add Student
+            <i class="material-icons right">add</i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
