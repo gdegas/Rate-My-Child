@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  font-family: 'Nunito', sans-serif;
+}
+
+div.valign-wrapper {
+  margin-top: 65px;
+}
+
+.form-label {
+  font-size: 20px !important;
+}
+
+input {
+  margin-bottom: 45px !important;
+}
