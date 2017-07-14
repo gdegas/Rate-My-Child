@@ -6,14 +6,22 @@ header {
   font-family: 'Nunito', sans-serif;
 }
 
-div.valign-wrapper {
-  margin-top: 65px;
+header h2 {
+  margin-bottom: 60px;
 }
 
-.form-label {
+.view1-label {
   font-size: 20px !important;
 }
 
 input {
   margin-bottom: 45px !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.add-icon {
+  margin-top: 25px;
 }

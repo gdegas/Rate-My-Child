@@ -21,7 +21,7 @@ app.post('/students', (req, res) => {
   const addStudent = req.body
   crudStudent.addStudent(addStudent)
     .then(() => {
-      res.Status(201).json(addStudent)
+      res.status(201).json(addStudent)
       console.log('done!')
     })
     .catch(error => {

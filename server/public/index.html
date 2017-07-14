@@ -15,8 +15,8 @@
   <header class="center-align">
     <h2 class="teal-text lighten-1">Rate My Child</h2>
   </header>
-  <div class="hide valign-wrapper teal-text lighten-1 view1">
-    <div class="container add-student">
+  <div class="hidden valign-wrapper teal-text lighten-1 add-student view" id="add">
+    <div class="container">
       <div class="row">
         <form id="add-student" class="col s12">
           <div class="row">
@@ -44,14 +44,14 @@
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container student-list view" id="list">
     <div class="row">
       <div class="center-align">
         <h4 class="red-text text-lighten-2">Students</h4>
       </div>
         <div class="list-students">
         </div>
-      <a class="add-icon btn-floating btn-large waves-effect waves-light red">
+      <a class="add-icon btn-floating btn-large waves-effect waves-light red" href="#add">
         <i class="material-icons">person_add</i>
       </a>
     </div>
