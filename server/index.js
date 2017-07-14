@@ -27,6 +27,12 @@ app.post('/students', (req, res) => {
     .catch(error => {
       console.log(error)
       res.sendStatus(500)
+    
+app.post('/students', (req, res) => {
+  const addStudent = req.body
+  insertStudent(addStudent)
+    .then(() => {
+      res.Status(201).json(addStudent)
     })
 })
 

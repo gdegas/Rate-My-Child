@@ -6,6 +6,7 @@ header {
   font-family: 'Nunito', sans-serif;
 }
 
+
 header h2 {
   margin-bottom: 60px;
 }
@@ -18,6 +19,7 @@ input {
   margin-bottom: 45px !important;
 }
 
+
 .hidden {
   display: none;
 }
@@ -25,3 +27,4 @@ input {
 .add-icon {
   margin-top: 25px;
 }
+

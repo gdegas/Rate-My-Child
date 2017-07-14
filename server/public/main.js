@@ -38,6 +38,7 @@ function listStudents() {
 }
 
 const $studentList = document.querySelector('.list-students')
+
 const addStudent = document.getElementById('add-student')
 
 addStudent.addEventListener('submit', (event) => {
@@ -84,3 +85,4 @@ const router = new HashRouter($views)
 router.listen()
 
 listStudents()
+
