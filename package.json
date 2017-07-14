@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run lint",
-    "watch": "nodemon main.js",
+    "start": "node server/index.js",
+    "watch": "nodemon server/index.js",
+
     "lint": "run-p lint:*",
     "lint:html": "htmlhint ./**/*.html",
     "lint:css": "stylelint ./**/*.css",
@@ -39,6 +41,7 @@
     "eslint-plugin-standard": "3.0.1",
     "htmlhint": "0.9.13",
     "husky": "0.13.4",
+    "nodemon": "^1.11.0",
     "npm-run-all": "4.0.2",
     "stylelint": "7.10.1",
     "stylelint-config-standard": "16.0.0"
