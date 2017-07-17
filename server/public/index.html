@@ -19,7 +19,6 @@
 
   <div class="hidden valign-wrapper teal-text lighten-1 add-student view" id="add">
     <div class="container">
-
       <div class="row">
         <form id="add-student" class="col s12">
           <div class="row">
@@ -57,6 +56,54 @@
       <a class="add-icon btn-floating btn-large waves-effect waves-light red" href="#add">
         <i class="material-icons">person_add</i>
       </a>
+    </div>
+  </div>
+  <div class="hidden container view" id="add-report-view">
+    <div class="row">
+      <form class="col s12" id="add-report" action="#">
+        <div class="row">
+          <header class="col s4">
+            <h4 id="name-report" class="student-name red-text text-lighten-2"></h4>
+          </header>
+        </div>
+        <div>
+          <h4>Choose a behavior color for the day!</h4>
+        </div>
+        <hr />
+        <div class="col s3">
+          <input name="colors" class="with-gap" value="red" type="radio"  id="red"/>
+          <label class="btn btn-floating btn-large red" for="red"></label>
+        </div>
+        <div class="col s3">
+          <input name="colors" class="with-gap" value="yellow" type="radio" id="yellow"/>
+          <label class="btn btn-floating btn-large yellow" for="yellow"></label>
+        </div>
+        <div class="col s3">
+          <input name="colors" class="with-gap" value="green" type="radio" id="green"/>
+          <label class="btn btn-floating btn-large green" for="green"></label>
+        </div>
+        <div class="col s3">
+          <input name="colors" class="with-gap" value="gold" type="radio" id="gold"/>
+          <label class="btn btn-floating btn-large yellow darken-2" for="gold"><i class="material-icons">grade</i></label>
+        </div>
+        <input name="student_id" id="student-id" type="hidden" value="" />
+        <hr />
+        <ul data-id="red">
+          <li>Student hit or hurt someone</li>
+          <li>Uncontrolable anger</li>
+          <li>Frequent outbursts</li>
+        </ul>
+        <div class="row">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">mode_edit</i>
+            <textarea placeholder="Comments" id="report-comment" class="materialize-textarea"></textarea>
+            <label for="comments"></label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Log Report
+          <i class="material-icons right">send</i>
+        </button>
+      </form>
     </div>
   </div>
   <script src="main.js"></script>

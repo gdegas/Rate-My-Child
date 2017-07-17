@@ -23,6 +23,7 @@ function renderStudent(student) {
   $divStudent.classList.add('card-panel', 'waves-effect', 'waves-light', 'teal', 'lighten-2',
                             'z-depth-5', 'col', 's12', 'hoverable')
   const $studentName = document.createElement('h3')
+  $studentName.setAttribute('data-id', student.id)
   $studentName.textContent = student.name
   $studentName.classList.add('white-text', 'center-align')
   $divStudent.appendChild($studentName)
@@ -62,10 +63,9 @@ function radioColor() {
     return $radioSelected.value
   }
 }
-// in my event listener to click student use both of those
 
-function resetRatingForm(id) {
-  const $studentName = document.getElementyById('name-report')
+function resetReportForm(id) {
+  const $studentName = document.getElementById('name-report')
   const $studentIdInput = document.getElementById('student-id')
   findStudent(id)
     .then(student => {
@@ -80,15 +80,23 @@ function findStudent(id) {
 }
 
 const $studentList = document.querySelector('.list-students')
-const addStudent = document.getElementById('add-student')
-const addReport = document.getElementById('add-report')
+const $addStudent = document.getElementById('add-student')
+const $addReport = document.getElementById('add-report')
 const $reportContainer = document.getElementById('add-report-view')
+const $studentsView = document.getElementById('list')
 
-// $reportContainer.addEventListener('click', (event) => {
-//
-// })
+$studentsView.addEventListener('click', (event) => {
+  const dataId = event.target.getAttribute('data-id')
 
-addStudent.addEventListener('submit', (event) => {
+  if (dataId === null) {
+    return
+  }
+  resetReportForm(dataId)
+  $studentsView.classList.add('hidden')
+  $reportContainer.classList.remove('hidden')
+})
+
+$addStudent.addEventListener('submit', (event) => {
   event.preventDefault()
   const $studentName = document.getElementById('student-name')
   const $parentName = document.getElementById('parent-name')
@@ -101,26 +109,15 @@ addStudent.addEventListener('submit', (event) => {
   postStudent(student)
 })
 
-addReport.addEventListener('submit', (event) => {
+$addReport.addEventListener('submit', (event) => {
   event.preventDefault()
   const $comment = document.getElementById('report-comment')
   const comment = $comment.value
+  const $studentId = document.getElementById('student-id')
 
-  const report = { color: radioColor(), log_comment: comment }
+  const report = { color: radioColor(), log_comment: comment, student_id: $studentId.value }
   console.log(report)
 })
-
-// $container.addEventListener('click', function (event) {
-//   var id = event.target.getAttribute('data-id')
-//   if (id === null) {
-//     return
-//   }
-//   var surfboard = findBoard(id, $surfboards)
-//   var $details = renderDescription(surfboard)
-//   $surfboardList.classList.add('hide')
-//   $surfboardDescription.appendChild($details)
-//   $surfboardDescription.classList.remove('hide')
-// })
 
 class HashRouter {
   constructor($views) {
