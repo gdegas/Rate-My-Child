@@ -22,6 +22,7 @@ function getStudentById(id) {
     .where('id', id)
     .select('*')
     .from('students')
+    .first()
   return query
 }
 

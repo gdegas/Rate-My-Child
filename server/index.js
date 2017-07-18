@@ -21,7 +21,7 @@ app.get('/students/:id', (req, res) => {
   const studentId = parseInt(req.params.id, 10)
   crudStudent.getStudentById(studentId)
     .then(student => {
-      res.status(201).json(student)
+      res.status(200).json(student)
     })
     .catch(error => {
       console.log(error)
