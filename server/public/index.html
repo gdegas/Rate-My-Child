@@ -68,31 +68,46 @@
         </div>
         <div>
           <h4>Choose a behavior color for the day!</h4>
+          <p>*click on a color to see examples of that behavior</p>
         </div>
         <hr />
         <div class="col s3">
-          <input name="colors" class="with-gap" value="red" type="radio"  id="red"/>
-          <label class="btn btn-floating btn-large red" for="red"></label>
+          <input name="colors" data-id="red" value="red" type="radio"  id="red"/>
+          <label for="red" data-id="red"><a class="btn btn-floating btn-large red"></a></label>
         </div>
         <div class="col s3">
-          <input name="colors" class="with-gap" value="yellow" type="radio" id="yellow"/>
-          <label class="btn btn-floating btn-large yellow" for="yellow"></label>
+          <input name="colors" data-id="yellow" value="yellow" type="radio" id="yellow"/>
+          <label for="yellow" data-id="yellow"><a class="btn btn-floating btn-large yellow"></a></label>
         </div>
         <div class="col s3">
-          <input name="colors" class="with-gap" value="green" type="radio" id="green"/>
-          <label class="btn btn-floating btn-large green" for="green"></label>
+          <input name="colors" data-id="green" value="green" type="radio" id="green"/>
+          <label for="green" data-id="green"><a class="btn btn-floating btn-large green"></a></label>
         </div>
         <div class="col s3">
-          <input name="colors" class="with-gap" value="gold" type="radio" id="gold"/>
-          <label class="btn btn-floating btn-large yellow darken-2" for="gold"><i class="material-icons">grade</i></label>
+          <input name="colors" data-id="gold" value="gold" type="radio" id="gold"/>
+          <label for="gold" data-id="gold"><i class="material-icons large amber-text">grade</i></label>
         </div>
         <input name="student_id" id="student-id" type="hidden" value="" />
         <hr />
-        <ul data-id="red">
-          <li>Student hit or hurt someone</li>
-          <li>Uncontrolable anger</li>
-          <li>Frequent outbursts</li>
-        </ul>
+        <div class="tooltips-view">
+          <ul class="hidden tooltips" value="red">
+            <li>Student hit or hurt someone</li>
+            <li>Uncontrolable anger</li>
+            <li>Frequent outbursts</li>
+          </ul>
+          <ul class="hidden tooltips" value="yellow">
+            <li>Student is not cooperative</li>
+            <li>Slighty defiant behavior</li>
+            <li>Not following teacher directions</li>
+            <li>Student is being disrespectful</li>
+          </ul>
+          <ul class="hidden tooltips" value="green">
+            <li>Student displayed cooperative behavior</li>
+            <li>Student worked quietly in class</li>
+            <li>Student was positive and friendly</li>
+          </ul>
+          <h4 class="hidden tooltips" value="gold">Classroom HERO!</h4>
+        </div>
         <div class="row">
           <div class="input-field col s6">
             <i class="material-icons prefix">mode_edit</i>

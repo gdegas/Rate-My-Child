@@ -87,7 +87,6 @@ const $studentsView = document.getElementById('list')
 
 $studentsView.addEventListener('click', (event) => {
   const dataId = event.target.getAttribute('data-id')
-
   if (dataId === null) {
     return
   }
@@ -117,6 +116,23 @@ $addReport.addEventListener('submit', (event) => {
 
   const report = { color: radioColor(), log_comment: comment, student_id: $studentId.value }
   console.log(report)
+})
+
+$addReport.addEventListener('click', (event) => {
+  const tooltipsDiv = document.querySelector('.tooltips-view')
+  const dataId = event.target.getAttribute('data-id')
+  const tooltips = document.querySelectorAll('.tooltips')
+  if (dataId === null) {
+    return
+  }
+  for (let i = 0; i < tooltips.length; i++) {
+    if (tooltips[i].getAttribute('value') === dataId) {
+      tooltips[i].classList.remove('hidden')
+    }
+    else {
+      tooltips[i].classList.add('hidden')
+    }
+  }
 })
 
 class HashRouter {
