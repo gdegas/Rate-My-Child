@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 
 function postStudent(student) {
   return fetch('/students', {
@@ -11,7 +10,6 @@ function postStudent(student) {
   })
   .then(res => res.json())
   .then(newStudent => {
-
     console.log(newStudent)
   })
 }
@@ -113,13 +111,15 @@ $addReport.addEventListener('submit', (event) => {
   const $comment = document.getElementById('report-comment')
   const comment = $comment.value
   const $studentId = document.getElementById('student-id')
+  const $studentName = document.getElementById('name-report')
 
   const report = { color: radioColor(), log_comment: comment, student_id: $studentId.value }
-  console.log(report)
+
+  postReport(report)
+  alert('Thank you for logging ' + $studentName.textContent + '\'s report for the day!')
 })
 
 $addReport.addEventListener('click', (event) => {
-  const tooltipsDiv = document.querySelector('.tooltips-view')
   const dataId = event.target.getAttribute('data-id')
   const tooltips = document.querySelectorAll('.tooltips')
   if (dataId === null) {

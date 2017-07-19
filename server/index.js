@@ -18,8 +18,7 @@ app.get('/students', function (req, res) {
 })
 
 app.get('/students/:id', (req, res) => {
-  const studentId = parseInt(req.params.id, 10)
-  crudStudent.getStudentById(studentId)
+  crudStudent.getStudentById(req.params.id)
     .then(student => {
       res.status(200).json(student)
     })
@@ -34,7 +33,6 @@ app.post('/reports', (req, res) => {
   reports.add(addReport)
     .then(() => {
       res.status(201).json(addReport)
-      console.log('added report')
     })
     .catch(error => {
       console.log(error)
@@ -47,7 +45,6 @@ app.post('/students', (req, res) => {
   crudStudent.addStudent(addStudent)
     .then(() => {
       res.status(201).json(addStudent)
-      console.log('added student!')
     })
     .catch(error => {
       console.log(error)
