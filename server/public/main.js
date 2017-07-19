@@ -15,10 +15,13 @@ function postStudent(student) {
 }
 
 function renderStudent(student) {
+
   const $divStudent = document.createElement('div')
+  $divStudent.setAttribute('data-id', student.id)
   $divStudent.classList.add('card-panel', 'waves-effect', 'waves-light', 'teal', 'lighten-2',
-                            'z-depth-5', 'col', 's12')
+                            'z-depth-5', 'col', 's12', 'hoverable')
   const $studentName = document.createElement('h3')
+  $studentName.setAttribute('data-id', student.id)
   $studentName.textContent = student.name
   $studentName.classList.add('white-text', 'center-align')
   $divStudent.appendChild($studentName)
@@ -37,11 +40,53 @@ function listStudents() {
     })
 }
 
+function postReport(report) {
+  return fetch('/reports', {
+    method: 'POST',
+    body: JSON.stringify(report),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin'
+  })
+  .then(res => res.json())
+  .then(newReport => {
+    console.log(newReport)
+  })
+}
+
+function resetReportForm(id) {
+  const $studentName = document.getElementById('name-report')
+  const $studentIdInput = document.getElementById('student-id')
+  findStudent(id)
+    .then(student => {
+      $studentName.textContent = student.name
+      $studentIdInput.value = student.id
+    })
+}
+
+function findStudent(id) {
+  return fetch('/students/' + id)
+  .then(res => res.json())
+}
+
 const $studentList = document.querySelector('.list-students')
+const $addStudent = document.getElementById('add-student')
+const $addReport = document.getElementById('add-report')
+const $reportContainer = document.getElementById('add-report-view')
+const $studentsView = document.getElementById('list')
 
-const addStudent = document.getElementById('add-student')
+$studentsView.addEventListener('click', (event) => {
+  const dataId = event.target.getAttribute('data-id')
+  if (dataId === null) {
+    return
+  }
+  resetReportForm(dataId)
+  $studentsView.classList.add('hidden')
+  $reportContainer.classList.remove('hidden')
+})
 
-addStudent.addEventListener('submit', (event) => {
+$addStudent.addEventListener('submit', (event) => {
   event.preventDefault()
   const $studentName = document.getElementById('student-name')
   const $parentName = document.getElementById('parent-name')
@@ -52,6 +97,36 @@ addStudent.addEventListener('submit', (event) => {
   const student = { name: studentName, parent_name: parentName, parent_sms: parentSms }
 
   postStudent(student)
+})
+
+$addReport.addEventListener('submit', (event) => {
+  event.preventDefault()
+  const $comment = document.getElementById('report-comment')
+  const comment = $comment.value
+  const $studentId = document.getElementById('student-id')
+  const $studentName = document.getElementById('name-report')
+  const $radioSelected = document.querySelector('input[name="colors"]:checked')
+
+  const report = { color: $radioSelected.value, log_comment: comment, student_id: $studentId.value }
+
+  postReport(report)
+  alert('Thank you for logging ' + $studentName.textContent + '\'s report for the day!')
+})
+
+$addReport.addEventListener('click', (event) => {
+  const dataId = event.target.getAttribute('data-id')
+  const tooltips = document.querySelectorAll('.tooltips')
+  if (dataId === null) {
+    return
+  }
+  for (let i = 0; i < tooltips.length; i++) {
+    if (tooltips[i].getAttribute('value') === dataId) {
+      tooltips[i].classList.remove('hidden')
+    }
+    else {
+      tooltips[i].classList.add('hidden')
+    }
+  }
 })
 
 class HashRouter {
@@ -85,4 +160,3 @@ const router = new HashRouter($views)
 router.listen()
 
 listStudents()
-

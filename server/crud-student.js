@@ -17,7 +17,17 @@ function addStudent(student) {
   return query
 }
 
+function getStudentById(id) {
+  const query = knex
+    .where('id', id)
+    .select('*')
+    .from('students')
+    .first()
+  return query
+}
+
 module.exports = {
   addStudent,
-  listStudents
+  listStudents,
+  getStudentById
 }

@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require('body-parser')
 const crudStudent = require('./crud-student')
 const path = require('path')
-
+const reports = require('./crud-reports')
 const publicPath = path.join(__dirname, 'public')
 const staticMiddleware = express.static(publicPath)
 
@@ -17,22 +17,38 @@ app.get('/students', function (req, res) {
     })
 })
 
+app.get('/students/:id', (req, res) => {
+  crudStudent.getStudentById(req.params.id)
+    .then(student => {
+      res.status(200).json(student)
+    })
+    .catch(error => {
+      console.log(error)
+      res.sendStatus(500)
+    })
+})
+
+app.post('/reports', (req, res) => {
+  const addReport = req.body
+  reports.add(addReport)
+    .then(() => {
+      res.status(201).json(addReport)
+    })
+    .catch(error => {
+      console.log(error)
+      res.sendStatus(500)
+    })
+})
+
 app.post('/students', (req, res) => {
   const addStudent = req.body
   crudStudent.addStudent(addStudent)
     .then(() => {
       res.status(201).json(addStudent)
-      console.log('done!')
     })
     .catch(error => {
       console.log(error)
       res.sendStatus(500)
-    
-app.post('/students', (req, res) => {
-  const addStudent = req.body
-  insertStudent(addStudent)
-    .then(() => {
-      res.Status(201).json(addStudent)
     })
 })
 

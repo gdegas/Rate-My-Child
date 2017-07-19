@@ -6,7 +6,6 @@ header {
   font-family: 'Nunito', sans-serif;
 }
 
-
 header h2 {
   margin-bottom: 60px;
 }
@@ -15,10 +14,9 @@ header h2 {
   font-size: 20px !important;
 }
 
-input {
+input.validate {
   margin-bottom: 45px !important;
 }
-
 
 .hidden {
   display: none;
@@ -28,3 +26,14 @@ input {
   margin-top: 25px;
 }
 
+.student-name {
+  text-decoration: underline;
+}
+
+.student-comments {
+  height: 400px;
+}
+
+#hr-report {
+  margin-top: 85px;
+}
