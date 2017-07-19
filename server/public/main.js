@@ -55,13 +55,6 @@ function postReport(report) {
   })
 }
 
-function radioColor() {
-  const $radioSelected = document.querySelector('input[name="colors"]:checked')
-  if ($radioSelected) {
-    return $radioSelected.value
-  }
-}
-
 function resetReportForm(id) {
   const $studentName = document.getElementById('name-report')
   const $studentIdInput = document.getElementById('student-id')
@@ -112,8 +105,9 @@ $addReport.addEventListener('submit', (event) => {
   const comment = $comment.value
   const $studentId = document.getElementById('student-id')
   const $studentName = document.getElementById('name-report')
+  const $radioSelected = document.querySelector('input[name="colors"]:checked')
 
-  const report = { color: radioColor(), log_comment: comment, student_id: $studentId.value }
+  const report = { color: $radioSelected.value, log_comment: comment, student_id: $studentId.value }
 
   postReport(report)
   alert('Thank you for logging ' + $studentName.textContent + '\'s report for the day!')
