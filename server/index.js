@@ -8,18 +8,8 @@ const publicPath = path.join(__dirname, 'public')
 const staticMiddleware = express.static(publicPath)
 const Twilio = require('twilio')
 const tokens = require('./twilio-tokens')
+const fecha = require('fecha')
 const client = new Twilio(tokens.accountSid, tokens.authToken)
-
-// function sendSms(student) {
-//   client
-//   .messages
-//   .create({
-//     to: '+17144833294',
-//     from: '+15625487316' ,
-//     body: student.name + ' \'s behavior report for today:' + student.,
-// })
-// .then(message => console.log(message))
-// }
 
 app.use(staticMiddleware)
 app.use(bodyParser.json())
@@ -46,20 +36,23 @@ app.post('/reports', (req, res) => {
   const addReport = req.body
   reports
     .add(addReport)
-    .then(() => {
-      res.status(201).json(addReport)
+    .then(report => {
+
+      crudStudent.getStudentById(addReport.student_id)
+        .then(student => {
+          client
+            .messages.create({
+              to: student.parent_sms,
+              from: '+15625487316',
+              body: student.name + '\'s behavior report ' + fecha.format(report[0].log_date, 'MM-DD-YYYY') + ': ' + addReport.color + ', COMMENTS: ' + addReport.log_comment
+            })
+            .then(message => res.sendstatus(201))
+        })
     })
     .catch(error => {
       console.log(error)
       res.sendStatus(500)
     })
-  client
-    .messages.create({
-      to: '+17144833294',
-      from: '+15625487316',
-      body: 'Message sending is working'
-    })
-    .then(message => console.log(message))
 })
 
 app.post('/students', (req, res) => {
