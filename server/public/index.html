@@ -16,7 +16,6 @@
   <header class="center-align">
     <h2 class="teal-text lighten-1">Rate My Child</h2>
   </header>
-
   <div class="hidden valign-wrapper teal-text lighten-1 add-student view" id="add">
     <div class="container">
       <div class="row">
@@ -42,11 +41,12 @@
             Add Student
             <i class="material-icons right">add</i>
           </button>
+          <a href="#list" class="waves-effect waves-light btn">Back to students</a>
         </form>
       </div>
     </div>
   </div>
-  <div class="hidden container student-list view" id="list">
+  <div class="container student-list view" id="list">
     <div class="row">
       <div class="center-align">
         <h4 class="red-text text-lighten-2">Students</h4>
@@ -60,6 +60,7 @@
   </div>
   <div class="container view" id="add-report-view">
     <div class="row">
+      <a href="#list" class="left-align" id="students-link">Students</a>
       <form class="col s12" id="add-report">
         <div class="row">
           <header class="col s4">
@@ -84,7 +85,6 @@
         </div>
         <div class="col s3 center-align">
           <input name="colors" data-id="gold" value="gold" type="radio" id="gold"/>
-          <!-- <label for="gold" data-id="gold"><a><i class="material-icons large amber-text">grade</i></a></label> -->
           <label for="gold" data-id="gold"><a class="btn btn-floating btn-large amber"><i class="material-icons large white-text">grade</i></a></label>
         </div>
         <input name="student_id" id="student-id" type="hidden" value="" />
@@ -116,13 +116,13 @@
           </div>
         </div>
         <p>
-          <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-          <label for="filled-in-box">Send report as SMS to parent</label>
+          <input type="checkbox" class="filled-in" id="send-sms" checked="checked" />
+          <label for="send-sms">Send report as SMS to parent</label>
         </p>
         <div class="center-align">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Log Report
-            <i class="material-icons right">send</i>
-          </button>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Log Report
+              <i class="material-icons right">send</i>
+            </button>
         </div>
       </form>
     </div>

@@ -15,7 +15,8 @@ function postStudent(student) {
 }
 
 function renderStudent(student) {
-
+  const aTag = document.createElement('a')
+  aTag.setAttribute('href', '#add-report-view')
   const $divStudent = document.createElement('div')
   $divStudent.setAttribute('data-id', student.id)
   $divStudent.classList.add('card-panel', 'waves-effect', 'waves-light', 'teal', 'lighten-2',
@@ -25,7 +26,8 @@ function renderStudent(student) {
   $studentName.textContent = student.name
   $studentName.classList.add('white-text', 'center-align')
   $divStudent.appendChild($studentName)
-  return $divStudent
+  aTag.appendChild($divStudent)
+  return aTag
 }
 
 function listStudents() {
@@ -97,6 +99,8 @@ $addStudent.addEventListener('submit', (event) => {
   const student = { name: studentName, parent_name: parentName, parent_sms: parentSms }
 
   postStudent(student)
+  alert(studentName + 'has been added!')
+  router.push('list')
 })
 
 $addReport.addEventListener('submit', (event) => {
@@ -116,6 +120,7 @@ $addReport.addEventListener('submit', (event) => {
     postReport(report, '')
   }
   alert('Thank you for logging ' + $studentName.textContent + '\'s report for the day!')
+  router.push('list')
 })
 
 $addReport.addEventListener('click', (event) => {
@@ -133,31 +138,6 @@ $addReport.addEventListener('click', (event) => {
     }
   }
 })
-
-// class HashRouter {
-//   constructor($views) {
-//     this.$views = Array.from($views)
-//     this.isListening = false
-//   }
-//   match(hash) {
-//     const viewId = hash.replace('#', '')
-//     this.$views.forEach($view => {
-//       if ($view.id === viewId) {
-//         $view.classList.remove('hidden')
-//       }
-//       else {
-//         $view.classList.add('hidden')
-//       }
-//     })
-//   }
-//   listen() {
-//     if (this.isListening) return
-//     window.addEventListener('hashchange', () => {
-//       this.match(window.location.hash)
-//     })
-//     this.isListening = true
-//   }
-// }
 
 class HashRouter {
   constructor($views) {
@@ -195,11 +175,27 @@ class HashRouter {
     window.dispatchEvent(new Event('hashchange'))
     this.isListening = true
   }
+  push(newhash) {
+    window.location.hash = newhash
+  }
 }
 
 const $views = document.querySelectorAll('.view')
 const router = new HashRouter($views)
 
-router.listen()
+router.when('list', $view => {
+  $studentList.innerHTML = ''
+  return listStudents()
+})
 
-listStudents()
+router.when('add', $view => {
+  return Promise.resolve()
+})
+
+router.when('add-report-view', $view => {
+  return Promise.resolve()
+})
+
+router.push('list')
+
+router.listen()
