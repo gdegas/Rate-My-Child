@@ -23,17 +23,17 @@
           <div class="row">
             <div class="input-field col s12">
               <i class="large material-icons prefix">account_circle</i>
-              <input id="student-name" type="text" class="validate teal-text lighten-1" />
+              <input id="student-name" type="text" class="validate teal-text lighten-1" required/>
               <label class="view1-label active" for="student-name">Student Name</label>
             </div>
             <div class="input-field col s12">
               <i class="large material-icons prefix">account_circle</i>
-              <input id="parent-name" type="text" class="validate" />
+              <input id="parent-name" type="text" class="validate" required/>
               <label class="view1-label active" for="parent-name">Parent Name</label>
             </div>
             <div class="input-field col s12">
               <i class="large material-icons prefix">phone</i>
-              <input id="parent-sms" type="tel" class="validate" />
+              <input id="parent-sms" type="tel" class="validate" required/>
               <label class="view1-label active" for="parent-sms">Parent Telephone</label>
             </div>
           </div>
@@ -73,22 +73,22 @@
           <h4>Choose a behavior color for the day!</h4>
         </div>
         <hr />
-        <div class="col s3 center-align">
-          <input name="colors" data-id="red" value="red" type="radio"  id="red"/>
-          <label for="red" data-id="red"><a class="btn btn-floating btn-large red"></a></label>
-        </div>
-        <div class="col s3 center-align">
-          <input name="colors" data-id="yellow" value="yellow" type="radio" id="yellow"/>
-          <label for="yellow" data-id="yellow"><a class="btn btn-floating btn-large yellow"></a></label>
-        </div>
-        <div class="col s3 center-align">
-          <input name="colors" data-id="green" value="green" type="radio" id="green"/>
-          <label for="green" data-id="green"><a class="btn btn-floating btn-large green"></a></label>
-        </div>
-        <div class="col s3 center-align">
-          <input name="colors" data-id="gold" value="gold" type="radio" id="gold"/>
-          <label for="gold" data-id="gold"><a class="btn btn-floating btn-large amber"><i class="material-icons large white-text">grade</i></a></label>
-        </div>
+          <div class="col s3 center-align">
+            <input name="colors" data-id="red" value="red" type="radio" required id="red" />
+            <label for="red" data-id="red"><a class="btn btn-floating btn-large red"></a></label>
+          </div>
+          <div class="col s3 center-align">
+            <input name="colors" data-id="yellow" value="yellow" type="radio" id="yellow" />
+            <label for="yellow" data-id="yellow"><a class="btn btn-floating btn-large yellow"></a></label>
+          </div>
+          <div class="col s3 center-align">
+            <input name="colors" data-id="green" value="green" type="radio" id="green" />
+            <label for="green" data-id="green"><a class="btn btn-floating btn-large green"></a></label>
+          </div>
+          <div class="col s3 center-align">
+            <input name="colors" data-id="gold" value="gold" type="radio" id="gold" />
+            <label for="gold" data-id="gold"><a class="btn btn-floating btn-large amber"><i class="material-icons large white-text">grade</i></a></label>
+          </div>
         <input name="student_id" id="student-id" type="hidden" value="" />
         <hr id="hr-report"/>
         <div class="tooltips-view">
@@ -113,7 +113,7 @@
         <div class="row">
           <div class="input-field col s6 offset-s3">
             <i class="material-icons prefix">mode_edit</i>
-            <textarea placeholder="Comments" id="report-comment" class="materialize-textarea"></textarea>
+            <textarea placeholder="Comments" id="report-comment" class="materialize-textarea validate" required></textarea>
             <label for="comments"></label>
           </div>
         </div>

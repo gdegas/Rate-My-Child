@@ -7,7 +7,7 @@ header {
 }
 
 header h2 {
-  margin-bottom: 60px;
+  margin-bottom: 28px;
 }
 
 .view1-label {
@@ -36,4 +36,13 @@ input.validate {
 
 #hr-report {
   margin-top: 85px;
+}
+
+#students-link {
+  font-size: 24px;
+  text-decoration: underline;
+}
+
+#back-button {
+  margin-top: 91px;
 }

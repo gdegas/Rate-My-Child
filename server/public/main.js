@@ -192,10 +192,12 @@ router.when('list', $view => {
 })
 
 router.when('add', $view => {
+  $addStudent.reset()
   return Promise.resolve()
 })
 
 router.when('add-report-view', $view => {
+  $addReport.reset()
   return Promise.resolve()
 })
 
