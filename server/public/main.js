@@ -40,8 +40,8 @@ function listStudents() {
     })
 }
 
-function postReport(report) {
-  return fetch('/reports', {
+function postReport(report, send) {
+  return fetch('/reports' + send, {
     method: 'POST',
     body: JSON.stringify(report),
     headers: {
@@ -106,10 +106,15 @@ $addReport.addEventListener('submit', (event) => {
   const $studentId = document.getElementById('student-id')
   const $studentName = document.getElementById('name-report')
   const $radioSelected = document.querySelector('input[name="colors"]:checked')
-
+  const $smsCheckbox = document.getElementById('send-sms')
   const report = { color: $radioSelected.value, log_comment: comment, student_id: $studentId.value }
-
-  postReport(report)
+  if ($smsCheckbox.checked) {
+    postReport(report, '?send=true')
+    alert('SMS of report has been sent to parent')
+  }
+  else {
+    postReport(report, '')
+  }
   alert('Thank you for logging ' + $studentName.textContent + '\'s report for the day!')
 })
 
@@ -129,27 +134,65 @@ $addReport.addEventListener('click', (event) => {
   }
 })
 
+// class HashRouter {
+//   constructor($views) {
+//     this.$views = Array.from($views)
+//     this.isListening = false
+//   }
+//   match(hash) {
+//     const viewId = hash.replace('#', '')
+//     this.$views.forEach($view => {
+//       if ($view.id === viewId) {
+//         $view.classList.remove('hidden')
+//       }
+//       else {
+//         $view.classList.add('hidden')
+//       }
+//     })
+//   }
+//   listen() {
+//     if (this.isListening) return
+//     window.addEventListener('hashchange', () => {
+//       this.match(window.location.hash)
+//     })
+//     this.isListening = true
+//   }
+// }
+
 class HashRouter {
   constructor($views) {
     this.$views = Array.from($views)
+    this.handlers = {}
     this.isListening = false
   }
   match(hash) {
-    const viewId = hash.replace('#', '')
-    this.$views.forEach($view => {
-      if ($view.id === viewId) {
-        $view.classList.remove('hidden')
-      }
-      else {
-        $view.classList.add('hidden')
-      }
+    const $view = this.$views.find($view => {
+      return $view.id === hash
     })
+    const handler = this.handlers[hash]
+    if (!$view || !handler) return
+    handler($view)
+      .then(() => {
+        this.$views.forEach($view => {
+          if ($view.id === hash) {
+            $view.classList.remove('hidden')
+          }
+          else {
+            $view.classList.add('hidden')
+          }
+        })
+      })
+  }
+  when(hash, handler) {
+    this.handlers[hash] = handler
   }
   listen() {
     if (this.isListening) return
     window.addEventListener('hashchange', () => {
-      this.match(window.location.hash)
+      const hash = window.location.hash.replace('#', '')
+      this.match(hash)
     })
+    window.dispatchEvent(new Event('hashchange'))
     this.isListening = true
   }
 }
