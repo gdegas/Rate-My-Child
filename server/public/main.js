@@ -35,6 +35,7 @@ function listStudents() {
     .then(res => res.json())
     .then(students => {
       console.log(students)
+      $studentList.innerHTML = ''
       students.map(renderStudent)
         .forEach($divStudent => {
           $studentList.appendChild($divStudent)
@@ -60,6 +61,9 @@ function postReport(report, send) {
 function resetReportForm(id) {
   const $studentName = document.getElementById('name-report')
   const $studentIdInput = document.getElementById('student-id')
+  const $reportDate = document.getElementById('report-date')
+  const utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/')
+  $reportDate.textContent = utc
   findStudent(id)
     .then(student => {
       $studentName.textContent = student.name
@@ -184,7 +188,6 @@ const $views = document.querySelectorAll('.view')
 const router = new HashRouter($views)
 
 router.when('list', $view => {
-  $studentList.innerHTML = ''
   return listStudents()
 })
 
