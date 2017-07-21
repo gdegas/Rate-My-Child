@@ -33,7 +33,6 @@ app.get('/students/:id', (req, res) => {
 })
 
 app.post('/reports', (req, res) => {
-  console.log(req.query)
   const addReport = req.body
   reports
     .add(addReport)
@@ -48,7 +47,6 @@ app.post('/reports', (req, res) => {
                 body: student.name + '\'s behavior report ' + fecha.format(report[0].log_date, 'MM-DD-YYYY') + ': ' + addReport.color + ', COMMENTS: ' + addReport.log_comment
               })
               .then(message => {
-                console.log(message.sid)
               })
               .catch(error => console.log(error))
           })
