@@ -33,22 +33,28 @@ app.get('/students/:id', (req, res) => {
 })
 
 app.post('/reports', (req, res) => {
+  console.log(req.query)
   const addReport = req.body
   reports
     .add(addReport)
     .then(report => {
-
-      crudStudent.getStudentById(addReport.student_id)
-        .then(student => {
-          client
-            .messages.create({
-              to: student.parent_sms,
-              from: '+15625487316',
-              body: student.name + '\'s behavior report ' + fecha.format(report[0].log_date, 'MM-DD-YYYY') + ': ' + addReport.color + ', COMMENTS: ' + addReport.log_comment
-            })
-            .then(message => res.sendstatus(201))
-        })
+      if (req.query.send === 'true') {
+        crudStudent.getStudentById(addReport.student_id)
+          .then(student => {
+            client.messages
+              .create({
+                to: student.parent_sms,
+                from: tokens.twilioNumber,
+                body: student.name + '\'s behavior report ' + fecha.format(report[0].log_date, 'MM-DD-YYYY') + ': ' + addReport.color + ', COMMENTS: ' + addReport.log_comment
+              })
+              .then(message => {
+                console.log(message.sid)
+              })
+              .catch(error => console.log(error))
+          })
+      }
     })
+    .then(() => res.sendStatus(201))
     .catch(error => {
       console.log(error)
       res.sendStatus(500)

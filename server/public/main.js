@@ -34,7 +34,6 @@ function listStudents() {
   return fetch('/students')
     .then(res => res.json())
     .then(students => {
-      console.log(students)
       $studentList.innerHTML = ''
       students.map(renderStudent)
         .forEach($divStudent => {
