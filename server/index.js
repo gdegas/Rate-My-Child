@@ -6,6 +6,10 @@ const path = require('path')
 const reports = require('./crud-reports')
 const publicPath = path.join(__dirname, 'public')
 const staticMiddleware = express.static(publicPath)
+const Twilio = require('twilio')
+const tokens = require('./twilio-tokens')
+const fecha = require('fecha')
+const client = new Twilio(tokens.accountSid, tokens.authToken)
 
 app.use(staticMiddleware)
 app.use(bodyParser.json())
@@ -30,10 +34,25 @@ app.get('/students/:id', (req, res) => {
 
 app.post('/reports', (req, res) => {
   const addReport = req.body
-  reports.add(addReport)
-    .then(() => {
-      res.status(201).json(addReport)
+  reports
+    .add(addReport)
+    .then(report => {
+      if (req.query.send === 'true') {
+        crudStudent.getStudentById(addReport.student_id)
+          .then(student => {
+            client.messages
+              .create({
+                to: student.parent_sms,
+                from: tokens.twilioNumber,
+                body: student.name + '\'s behavior report ' + fecha.format(report[0].log_date, 'MM-DD-YYYY') + ': ' + addReport.color + ', COMMENTS: ' + addReport.log_comment
+              })
+              .then(message => {
+              })
+              .catch(error => console.log(error))
+          })
+      }
     })
+    .then(() => res.sendStatus(201))
     .catch(error => {
       console.log(error)
       res.sendStatus(500)
