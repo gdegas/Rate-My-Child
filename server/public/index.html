@@ -61,72 +61,74 @@
   </div>
   <div class="container view" id="add-report-view">
     <div class="row">
-      <a href="#list" class="left-align" id="students-link">Students</a>
-      <form class="col s12" id="add-report">
-        <div class="row">
-          <header class="col s4">
-            <h4 id="name-report" class="student-name red-text text-lighten-2"></h4>
-            <h5 id="report-date"></h5>
-          </header>
-        </div>
-        <div>
-          <h4>Choose a behavior color for the day!</h4>
-        </div>
-        <hr />
-          <div class="col s3 center-align">
-            <input name="colors" data-id="red" value="red" type="radio" required id="red" />
-            <label for="red" data-id="red"><a class="btn btn-floating btn-large red"></a></label>
+      <a href="#list" class="left" id="students-link">Students</a>
+      <div class="row col s12">
+        <form class="col s12 l6 offset-l3" id="add-report">
+          <div class="row">
+            <header id="report-header" class="col s6 offset-s3">
+              <h4 id="name-report" class="center-align student-name red-text text-lighten-2"></h4>
+              <h5 id="report-date" class="center-align"></h5>
+            </header>
           </div>
-          <div class="col s3 center-align">
-            <input name="colors" data-id="yellow" value="yellow" type="radio" id="yellow" />
-            <label for="yellow" data-id="yellow"><a class="btn btn-floating btn-large yellow"></a></label>
+          <div>
+            <h4>Choose a behavior color for the day!</h4>
           </div>
-          <div class="col s3 center-align">
-            <input name="colors" data-id="green" value="green" type="radio" id="green" />
-            <label for="green" data-id="green"><a class="btn btn-floating btn-large green"></a></label>
+          <hr />
+            <div class="col s3 center-align">
+              <input name="colors" data-id="red" value="red" type="radio" required id="red" />
+              <label for="red" data-id="red"><a class="btn btn-floating btn-large red"></a></label>
+            </div>
+            <div class="col s3 center-align">
+              <input name="colors" data-id="yellow" value="yellow" type="radio" id="yellow" />
+              <label for="yellow" data-id="yellow"><a class="btn btn-floating btn-large yellow"></a></label>
+            </div>
+            <div class="col s3 center-align">
+              <input name="colors" data-id="green" value="green" type="radio" id="green" />
+              <label for="green" data-id="green"><a class="btn btn-floating btn-large green"></a></label>
+            </div>
+            <div class="col s3 center-align">
+              <input name="colors" data-id="gold" value="gold" type="radio" id="gold" />
+              <label for="gold" data-id="gold"><a class="btn btn-floating btn-large amber"><i class="material-icons large white-text">grade</i></a></label>
+            </div>
+          <input name="student_id" id="student-id" type="hidden" value="" />
+          <hr id="hr-report"/>
+          <div class="tooltips-view">
+            <ul class="hidden tooltips" value="red">
+              <li>Student hit or hurt someone</li>
+              <li>Uncontrolable anger</li>
+              <li>Frequent outbursts</li>
+            </ul>
+            <ul class="hidden tooltips" value="yellow">
+              <li>Student is not cooperative</li>
+              <li>Slighty defiant behavior</li>
+              <li>Not following teacher directions</li>
+              <li>Student is being disrespectful</li>
+            </ul>
+            <ul class="hidden tooltips" value="green">
+              <li>Student displayed cooperative behavior</li>
+              <li>Student worked quietly in class</li>
+              <li>Student was positive and friendly</li>
+            </ul>
+            <h4 class="hidden tooltips" value="gold">Classroom HERO!</h4>
           </div>
-          <div class="col s3 center-align">
-            <input name="colors" data-id="gold" value="gold" type="radio" id="gold" />
-            <label for="gold" data-id="gold"><a class="btn btn-floating btn-large amber"><i class="material-icons large white-text">grade</i></a></label>
+          <div class="row">
+            <div class="input-field col s8 offset-s2">
+              <i class="material-icons prefix">mode_edit</i>
+              <textarea placeholder="Comments" id="report-comment" class="materialize-textarea validate" required></textarea>
+              <label for="comments"></label>
+            </div>
           </div>
-        <input name="student_id" id="student-id" type="hidden" value="" />
-        <hr id="hr-report"/>
-        <div class="tooltips-view">
-          <ul class="hidden tooltips" value="red">
-            <li>Student hit or hurt someone</li>
-            <li>Uncontrolable anger</li>
-            <li>Frequent outbursts</li>
-          </ul>
-          <ul class="hidden tooltips" value="yellow">
-            <li>Student is not cooperative</li>
-            <li>Slighty defiant behavior</li>
-            <li>Not following teacher directions</li>
-            <li>Student is being disrespectful</li>
-          </ul>
-          <ul class="hidden tooltips" value="green">
-            <li>Student displayed cooperative behavior</li>
-            <li>Student worked quietly in class</li>
-            <li>Student was positive and friendly</li>
-          </ul>
-          <h4 class="hidden tooltips" value="gold">Classroom HERO!</h4>
-        </div>
-        <div class="row">
-          <div class="input-field col s6 offset-s3">
-            <i class="material-icons prefix">mode_edit</i>
-            <textarea placeholder="Comments" id="report-comment" class="materialize-textarea validate" required></textarea>
-            <label for="comments"></label>
+          <p>
+            <input type="checkbox" class="filled-in" id="send-sms" checked="checked" />
+            <label for="send-sms">Send report as SMS to parent</label>
+          </p>
+          <div class="center-align">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Log Report
+                <i class="material-icons right">send</i>
+              </button>
           </div>
-        </div>
-        <p>
-          <input type="checkbox" class="filled-in" id="send-sms" checked="checked" />
-          <label for="send-sms">Send report as SMS to parent</label>
-        </p>
-        <div class="center-align">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Log Report
-              <i class="material-icons right">send</i>
-            </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
   <script src="main.js"></script>
