@@ -32,6 +32,18 @@ app.get('/students/:id', (req, res) => {
     })
 })
 
+app.get('/reports/:student_id', (req, res) => {
+  reports
+    .getByStudentId(req.params.student_id)
+    .then(report => {
+      res.status(201).json(report)
+    })
+    .catch(error => {
+      console.log(error)
+      res.sendStatus(500)
+    })
+})
+
 app.post('/reports', (req, res) => {
   const addReport = req.body
   reports

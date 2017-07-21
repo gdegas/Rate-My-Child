@@ -11,9 +11,9 @@ const reports = {
       .returning('*')
     return query
   },
-  get: (name) => {
+  getByStudentId: (studentId) => {
     const query = knex
-      .where('name', name)
+      .where('student_id', studentId)
       .select('*')
       .from('reports')
     return query
