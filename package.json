@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A web app for teachers who want to share ratings of students.",
   "main": "index.js",
+  "engines": {
+    "node": "6.11.1"
+  },
   "scripts": {
     "test": "npm run lint",
     "start": "node server/index.js",
