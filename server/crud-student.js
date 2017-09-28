@@ -5,7 +5,7 @@ const knex = require('knex')({
 
 function listStudents() {
   const query = knex
-    .select()
+    .select('*')
     .from('students')
   return query
 }

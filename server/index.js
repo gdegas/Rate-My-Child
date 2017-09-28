@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -18,6 +19,10 @@ app.get('/students', function (req, res) {
   crudStudent.listStudents()
     .then((students) => {
       res.json(students)
+    })
+    .catch(error => {
+      console.log(error)
+      res.sendStatus(500)
     })
 })
 
