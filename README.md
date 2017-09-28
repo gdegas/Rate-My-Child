@@ -1,6 +1,8 @@
 # Rate-My-Child
 A web app for teachers who want to share ratings of students.
 
+Live demo: https://rate-my-child.herokuapp.com
+
 ![rate-my-child-gif](https://user-images.githubusercontent.com/26953295/30087400-5e2c33ee-9255-11e7-9b78-3e83373c6194.gif)
 
 ## Setup
