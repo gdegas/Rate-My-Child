@@ -1,11 +1,11 @@
 const knex = require('knex')({
   dialect: 'pg',
-  connection: 'postgres://localhost:5432/ratemychild'
+  connection: process.env.DATABASE_URL
 })
 
 function listStudents() {
   const query = knex
-    .select()
+    .select('*')
     .from('students')
   return query
 }

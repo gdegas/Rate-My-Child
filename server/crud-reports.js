@@ -1,6 +1,6 @@
 const knex = require('knex')({
   dialect: 'pg',
-  connection: 'postgres://localhost:5432/ratemychild'
+  connection: process.env.DATABASE_URL
 })
 
 const reports = {
